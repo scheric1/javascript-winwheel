@@ -626,6 +626,10 @@ Winwheel.prototype.drawSegments = function()
 
             // Loop though and output all segments - position 0 of the array is not used, so start loop from index 1
             // this is to avoid confusion when talking about the first segment.
+
+            let colors = ["#FFFFFF", "#eab308", "#b91c1c", "#27272a"];
+            let colorIndex = 0;
+
             for (let x = 1; x <= this.numSegments; x ++) {
                 // Get the segment object as we need it to read options from.
                 let seg = this.segments[x];
@@ -635,11 +639,20 @@ Winwheel.prototype.drawSegments = function()
                 let strokeStyle;
 
                 // Set the variables that defined in the segment, or use the default options.
-                if (seg.fillStyle !== null) {
-                    fillStyle = seg.fillStyle;
-                } else {
-                    fillStyle = this.fillStyle;
+                // if (seg.fillStyle !== null) {
+                //     fillStyle = '#FFFFFF';
+                // } else {
+                //     fillStyle = this.fillStyle;
+                // }
+
+                // Loop through NFN Colors instead of using the default
+                fillStyle = colors[colorIndex];
+                colorIndex++;
+                if (colorIndex > 3) {
+                    colorIndex = 0;
                 }
+
+
 
                 this.ctx.fillStyle = fillStyle;
 
